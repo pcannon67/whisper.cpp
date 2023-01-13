@@ -19,9 +19,9 @@ endif
 # Compile flags
 #
 
-CFLAGS   = -O3 -std=c11
-CXXFLAGS = -O3 -std=c++11
-LDFLAGS  =
+CFLAGS   = -O3 -std=c11 -flto
+CXXFLAGS = -O3 -std=c++11 -flto
+LDFLAGS  = -flto
 
 CFLAGS   += -Wall -Wextra -Wno-unused-parameter -Wno-unused-function
 CXXFLAGS += -Wall -Wextra -Wno-unused-parameter -Wno-unused-function
@@ -45,7 +45,8 @@ endif
 # TODO: probably these flags need to be tweaked on some architectures
 #       feel free to update the Makefile for your architecture and send a pull request or issue
 ifeq ($(UNAME_M),x86_64)
-	CFLAGS += -mavx -mavx2 -mfma -mf16c
+#	CFLAGS += -mavx -mavx2 -mfma -mf16c
+	CFLAGS += -ffast-math -msse -msse2 -msse3 -msse4.1 -msse4.2 -mf16c
 endif
 ifeq ($(UNAME_M),amd64)
 	CFLAGS += -mavx -mavx2 -mfma -mf16c

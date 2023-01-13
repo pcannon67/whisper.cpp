@@ -2,6 +2,7 @@ sync.sh
 main
 stream
 *.o
+*.a
 .cache
 build/
 build-em/
